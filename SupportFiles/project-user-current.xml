@@ -1,0 +1,19 @@
+<Configuration ID="785705f4-ce23-4ab1-940e-8497c91b4ba2">
+  <Info Description="Project with user activation, Current update channel" />
+  <Add OfficeClientEdition="64" Channel="Current" MigrateArch="TRUE">
+    <Product ID="ProjectProRetail">
+      <Language ID="en-us" />
+      <Language ID="MatchPreviousMSI" />
+    </Product>
+  </Add>
+  <Property Name="SharedComputerLicensing" Value="0" />
+  <Property Name="FORCEAPPSHUTDOWN" Value="FALSE" />
+  <Property Name="DeviceBasedLicensing" Value="0" />
+  <Property Name="SCLCacheOverride" Value="0" />
+  <Updates Enabled="TRUE" />
+  <RemoveMSI />
+  <AppSettings>
+    <Setup Name="Company" Value="University of Surrey" />
+  </AppSettings>
+  <Display Level="None" AcceptEULA="TRUE" />
+</Configuration>
