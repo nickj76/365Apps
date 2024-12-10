@@ -133,12 +133,12 @@ Try {
 
     [String]$appName = $installtypeconfig[$reqd_config_index].name
 
-    [String]$appVersion = '1.0'
+    [String]$appVersion = '2.0'
     [String]$appArch = 'x64'
     [String]$appLang = 'EN'
     [String]$appRevision = '01'
     [String]$appScriptVersion = '1.0.0'
-    [String]$appScriptDate = '23/11/2023'
+    [String]$appScriptDate = '10/12/2024'
     [String]$appScriptAuthor = ''
     ##*===============================================
     ## Variables: Install Titles (Only set here to override defaults set by the toolkit)
@@ -233,10 +233,10 @@ Try {
         ## <Perform Installation tasks here>
 
         function Get-ODTURL {
-            [String]$MSWebPage = Invoke-RestMethod 'https://www.microsoft.com/en-us/download/confirmation.aspx?id=49117'
+            [String]$MSWebPage = Invoke-RestMethod 'https://www.microsoft.com/en-gb/download/details.aspx?id=49117'
           
             $MSWebPage | ForEach-Object {
-                if ($_ -match 'url=(https://.*officedeploymenttool.*\.exe)') {
+                if ($_ -match '"url":"(https://[a-zA-Z0-9-_./]*officedeploymenttool[a-zA-Z0-9-_.]*\.exe)"') {
                     $matches[1]
                 }
             }
@@ -314,6 +314,9 @@ Try {
         } else {
             Write-Log -Severity 2 -Message "$appName was not detected after the install ran"
         }
+
+        # sleep for a couple of minutes to let the installation finish
+        Start-Sleep -Seconds 120
 
         if ($CleanUpInstallFiles) {
             Remove-Folder -Path "$OfficeInstallDownloadPath" -ErrorAction SilentlyContinue
